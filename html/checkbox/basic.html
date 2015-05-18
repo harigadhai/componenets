@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>Checkbox</title>
-<script src="../../public/js/jquery-1.11.3.min.js"></script>
 
+<link href="../../public/css/bootstrap.min.css" rel="stylesheet">
 <style>
 
 </style>
@@ -11,256 +11,264 @@
     
 <body>
 
-	<p>===========================================================</p>
-		<div>
-			<p>javascript basic function</p>
-			<div>		
-				chekbox : <input type="checkbox" id="myCheck"> <span id="result"></span>
-			</div>
+	<div class="container-fluid">
+		<div class="col-sm-6">
+			<p>===========================================================</p>
+					<div>
+						<p>javascript basic function</p>
+						<div>		
+							chekbox : <input type="checkbox" id="myCheck"> <span id="result"></span>
+						</div>
 
-			<button onclick="check()">check</button>
-			<button onclick="uncheck()">uncheck</button>
+						<button onclick="check()">check</button>
+						<button onclick="uncheck()">uncheck</button>
 
-			<script>
-				function check(){
-					document.getElementById("myCheck").checked = true;
-					document.getElementById("result").innerHTML = document.getElementById("myCheck").checked;
-				}
-				function uncheck(){
-					document.getElementById("myCheck").checked = false;
-					document.getElementById("result").innerHTML = document.getElementById("myCheck").checked;
-				}
-			</script>
-		</div>
-	<p>===========================================================</p>
-
-
-
-	<p>===========================================================</p>
-		<div>
-			<p>javascript onclick checkbox</p>
-
-			<div>		
-				chekbox : <input type="checkbox" id="onclickCheckbox"> <span id="onclickresult"></span>
-			</div>
-
-			<script>
-				document.getElementById('onclickCheckbox').onclick = function(){
-					if(this.checked){
-						document.getElementById('onclickresult').innerHTML = "I am clicked";
-					}else{
-						document.getElementById('onclickresult').innerHTML = "I am unclicked";
-					}
-				}
-			</script>
-
-		</div>
-
-
-	<p>===========================================================</p>
+						<script>
+							function check(){
+								document.getElementById("myCheck").checked = true;
+								document.getElementById("result").innerHTML = document.getElementById("myCheck").checked;
+							}
+							function uncheck(){
+								document.getElementById("myCheck").checked = false;
+								document.getElementById("result").innerHTML = document.getElementById("myCheck").checked;
+							}
+						</script>
+					</div>
+				<p>===========================================================</p>
 
 
 
-	<p>===========================================================</p>
-		<h3>simple select all function</h3>
-		<form action="" >
-			<div>
-				<div id="selectAllVal">
-					chekbox : <input type="checkbox" value="20" autocomplete="off" name="vegies"> <span> Onion</span>
-					<input type="checkbox" value="15" autocomplete="off" class='vegies' name="vegies"> <span> Capsicam</span>
-					<input type="checkbox" value="40" autocomplete="off" class='vegies' name="vegies"> <span> Mushroom</span>
-					<input type="checkbox" value="25" autocomplete="off" class='vegies' name="vegies"> <span> Chilly</span>
-					<input type="checkbox" value="35" autocomplete="off" class='vegies' name="vegies"> <span> Babycorn</span>
-				</div>
-				<p> <input type="checkbox" value="35" autocomplete="off" id="masterCheck" onclick=selectAll(this)> <span> Select All</span></p>
-			</div>
+				<p>===========================================================</p>
+					<div>
+						<p>javascript onclick checkbox</p>
 
-			<script>
-			window.onload = function(){
-				var elem = document.getElementById('selectAllVal');
-				var myvegies = elem.getElementsByTagName('input');
+						<div>		
+							chekbox : <input type="checkbox" id="onclickCheckbox"> <span id="onclickresult"></span>
+						</div>
 
-				for(var i=0; i<myvegies.length;i++){
-						if(myvegies[i].type == 'checkbox'){
-							myvegies[i].onchange = checkSelections;
+						<script>
+							document.getElementById('onclickCheckbox').onclick = function(){
+								if(this.checked){
+									document.getElementById('onclickresult').innerHTML = "I am clicked";
+								}else{
+									document.getElementById('onclickresult').innerHTML = "I am unclicked";
+								}
+							}
+						</script>
+
+					</div>
+
+
+				<p>===========================================================</p>
+
+
+
+				<p>===========================================================</p>
+					<h3>simple select all function</h3>
+					<form action="" >
+						<div>
+							<div id="selectAllVal">
+								chekbox : <input type="checkbox" value="20" autocomplete="off" name="vegies"> <span> Onion</span>
+								<input type="checkbox" value="15" autocomplete="off" class='vegies' name="vegies"> <span> Capsicam</span>
+								<input type="checkbox" value="40" autocomplete="off" class='vegies' name="vegies"> <span> Mushroom</span>
+								<input type="checkbox" value="25" autocomplete="off" class='vegies' name="vegies"> <span> Chilly</span>
+								<input type="checkbox" value="35" autocomplete="off" class='vegies' name="vegies"> <span> Babycorn</span>
+							</div>
+							<p> <input type="checkbox" value="35" autocomplete="off" id="masterCheck" onclick=selectAll(this)> <span> Select All</span></p>
+						</div>
+
+						<script>
+						window.onload = function(){
+							var elem = document.getElementById('selectAllVal');
+							var myvegies = elem.getElementsByTagName('input');
+
+							for(var i=0; i<myvegies.length;i++){
+									if(myvegies[i].type == 'checkbox'){
+										myvegies[i].onchange = checkSelections;
+									}
+								}
 						}
-					}
-			}
 
-			function checkSelections(){
-				//console.log(this.form.querySelectorAll(':checked').length) //======important========
-				var count = 0;
-				var elem = document.getElementById('selectAllVal');
-				var myvegies = elem.getElementsByTagName('input');
+						function checkSelections(){
+							//console.log(this.form.querySelectorAll(':checked').length) //======important========
+							var count = 0;
+							var elem = document.getElementById('selectAllVal');
+							var myvegies = elem.getElementsByTagName('input');
 
-				for(var i=0; i<myvegies.length;i++){
-						if(myvegies[i].type == 'checkbox'){
-							if(myvegies[i].checked == true){
-								count++;
+							for(var i=0; i<myvegies.length;i++){
+									if(myvegies[i].type == 'checkbox'){
+										if(myvegies[i].checked == true){
+											count++;
+										}else{
+											count--;
+										}
+									}
+								}
+
+
+
+							if(myvegies.length == count){
+								document.getElementById('masterCheck').checked = true;
 							}else{
-								count--;
+								document.getElementById('masterCheck').checked = false;
 							}
-						}
-					}
-
-
-
-				if(myvegies.length == count){
-					document.getElementById('masterCheck').checked = true;
-				}else{
-					document.getElementById('masterCheck').checked = false;
-				}
-			};
-				
-				function selectAll(all){
-					var checkedArray = [];
-					var checked = all.checked;
-					var elem = document.getElementById('selectAllVal');
-					var myvegies = elem.getElementsByTagName('input');
-					for(var i=0; i<myvegies.length;i++){
-						if(myvegies[i].type == 'checkbox'){
-							myvegies[i].checked = checked;
-							if(myvegies[i].checked == true){
-								checkedArray.push(myvegies[i].value)
-							}
-						}
+						};
 							
-					}
-					console.log(checkedArray)
-				}
-				
-			</script>
-
-		</form>
-	<p>===========================================================</p>
-
-
-	<p>===========================================================</p>
-		<h3>GET all selected values function</h3>
-		<form action="" >
-			<div id="getMultiVal">
-				chekbox : <input type="checkbox" value="20" autocomplete="off" name="vegies"> <span> Onion</span>
-				<input type="checkbox" value="15" autocomplete="off" name="vegies"> <span> Capsicam</span>
-				<input type="checkbox" value="40" autocomplete="off" name="vegies"> <span> Mushroom</span>
-				<input type="checkbox" value="25" autocomplete="off" name="vegies"> <span> Chilly</span>
-				<input type="checkbox" value="35" autocomplete="off" name="vegies"> <span> Babycorn</span>
-
-				<p><button type="button" onclick=getSelectedVal()>Get Values</button></p>
-			</div>
-			</form>
-			<script>
-				function getSelectedVal(){
-
-					var elem = document.getElementById('getMultiVal');
-					var myvegies = elem.getElementsByTagName('input');
-					var checkedArray = [];
-					for(var i=0; i<myvegies.length;i++){
-						if(myvegies[i].type == 'checkbox'){
-							if(myvegies[i].checked == true){
-								checkedArray.push(myvegies[i].value)
+							function selectAll(all){
+								var checkedArray = [];
+								var checked = all.checked;
+								var elem = document.getElementById('selectAllVal');
+								var myvegies = elem.getElementsByTagName('input');
+								for(var i=0; i<myvegies.length;i++){
+									if(myvegies[i].type == 'checkbox'){
+										myvegies[i].checked = checked;
+										if(myvegies[i].checked == true){
+											checkedArray.push(myvegies[i].value)
+										}
+									}
+										
+								}
+								console.log(checkedArray)
 							}
-						}
+							
+						</script>
+
+					</form>
+				<p>===========================================================</p>
+
+
+				<p>===========================================================</p>
+					<h3>GET all selected values function</h3>
+					<form action="" >
+						<div id="getMultiVal">
+							chekbox : <input type="checkbox" value="20" autocomplete="off" name="vegies"> <span> Onion</span>
+							<input type="checkbox" value="15" autocomplete="off" name="vegies"> <span> Capsicam</span>
+							<input type="checkbox" value="40" autocomplete="off" name="vegies"> <span> Mushroom</span>
+							<input type="checkbox" value="25" autocomplete="off" name="vegies"> <span> Chilly</span>
+							<input type="checkbox" value="35" autocomplete="off" name="vegies"> <span> Babycorn</span>
+
+							<p><button type="button" onclick=getSelectedVal()>Get Values</button></p>
+						</div>
+						</form>
+						<script>
+							function getSelectedVal(){
+
+								var elem = document.getElementById('getMultiVal');
+								var myvegies = elem.getElementsByTagName('input');
+								var checkedArray = [];
+								for(var i=0; i<myvegies.length;i++){
+									if(myvegies[i].type == 'checkbox'){
+										if(myvegies[i].checked == true){
+											checkedArray.push(myvegies[i].value)
+										}
+									}
+								}
+								console.log(checkedArray)
+							}
+							
+						</script>
+
+				<p>===========================================================</p>
+
+
+
+
+
+
+
+
+
+				<p>===========================================================</p>
+					<div>
+						<p>adding javascript onclick checkbox</p>
+						<h3>Browser cache control </h3>
+						<ul>
+							<li>Cache-Control: no-store (server side)</li>
+							<li>autocomplete="off" (not valid bt it will fix the issue)</li>				
+						</ul>
+						<form action="" id="myForm">
+							<div id="toppings">
+								chekbox : <input type="checkbox" value="20" autocomplete="off"> <span> Onion</span>
+								<input type="checkbox" value="15" autocomplete="off"> <span> Capsicam</span>
+								<input type="checkbox" value="40" autocomplete="off"> <span> Mushroom</span>
+								<input type="checkbox" value="25" autocomplete="off"> <span> Chilly</span>
+								<input type="checkbox" value="35" autocomplete="off"> <span> Babycorn</span>
+
+								<p> total : <span id="mainTotal">0</span></p>
+							</div>
+
+						</form>
+							
+
+						<script>
+							var parent = document.getElementById('toppings');
+							var tops = parent.getElementsByTagName('input');
+							for(var i = 0;i<tops.length;i++){
+								if(tops[i].type =="checkbox"){
+									tops[i].onclick = addingCount;//assinging function to selected object
+								}
+							}
+							
+
+							function addingCount(){
+
+								var form = this.form;
+
+								var val = parseFloat(document.getElementById('mainTotal').innerHTML);
+								if(this.checked){
+									val += parseFloat((this.value));
+								}else{
+									val -= parseFloat((this.value));
+								}
+								document.getElementById('mainTotal').innerHTML = val;
+							}
+						</script>
+
+					</div>
+
+
+				<p>===========================================================</p>
+
+
+
+				<p>===========================================================</p>
+					<div>
+						<p>javascript onchange Events</p>
+
+						<div>		
+							chekbox : <input type="checkbox" onchange=onchangeCheck(this)>
+							<span id="onchangeTxt"></span>
+						</div>
+					</div>
+
+					<script>
+					function onchangeCheck(elem){
+						document.getElementById('onchangeTxt').innerHTML = elem.checked;
 					}
-					console.log(checkedArray)
-				}
-				
-			</script>
-
-	<p>===========================================================</p>
-
-
-
-
-
-
-
-
-
-	<p>===========================================================</p>
-		<div>
-			<p>adding javascript onclick checkbox</p>
-			<h3>Browser cache control </h3>
-			<ul>
-				<li>Cache-Control: no-store (server side)</li>
-				<li>autocomplete="off" (not valid bt it will fix the issue)</li>				
-			</ul>
-			<form action="" id="myForm">
-				<div id="toppings">
-					chekbox : <input type="checkbox" value="20" autocomplete="off"> <span> Onion</span>
-					<input type="checkbox" value="15" autocomplete="off"> <span> Capsicam</span>
-					<input type="checkbox" value="40" autocomplete="off"> <span> Mushroom</span>
-					<input type="checkbox" value="25" autocomplete="off"> <span> Chilly</span>
-					<input type="checkbox" value="35" autocomplete="off"> <span> Babycorn</span>
-
-					<p> total : <span id="mainTotal">0</span></p>
-				</div>
-
-			</form>
-				
-
-			<script>
-				var parent = document.getElementById('toppings');
-				var tops = parent.getElementsByTagName('input');
-				for(var i = 0;i<tops.length;i++){
-					if(tops[i].type =="checkbox"){
-						tops[i].onclick = addingCount;//assinging function to selected object
-					}
-				}
-				
-
-				function addingCount(){
-
-					var form = this.form;
-
-					var val = parseFloat(document.getElementById('mainTotal').innerHTML);
-					if(this.checked){
-						val += parseFloat((this.value));
-					}else{
-						val -= parseFloat((this.value));
-					}
-					document.getElementById('mainTotal').innerHTML = val;
-				}
-			</script>
-
+					</script>
+				<p>===========================================================</p>
 		</div>
+			
 
 
-	<p>===========================================================</p>
+		<script src="../../public/js/jquery-1.11.3.min.js"></script>		
+		<div class="col-sm-6">
+			<div>
+				<p>jquery function</p>
+				<div>		
+					chekbox : <input type="checkbox" id="myCheck1">
+				</div>
+				<button id="check">check</button>
+				<button id="uncheck">uncheck</button>
 
+				<script>
+					$(function(){
+					});
+				</script>
 
-
-	<p>===========================================================</p>
-		<div>
-			<p>javascript onchange Events</p>
-
-			<div>		
-				chekbox : <input type="checkbox" onchange=onchangeCheck(this)>
-				<span id="onchangeTxt"></span>
 			</div>
 		</div>
-
-		<script>
-		function onchangeCheck(elem){
-			document.getElementById('onchangeTxt').innerHTML = elem.checked;
-		}
-		</script>
-	<p>===========================================================</p>
-
-	<div>
-		<p>jquery function</p>
-		<div>		
-			chekbox : <input type="checkbox" id="myCheck1">
-		</div>
-		<button id="check">check</button>
-		<button id="uncheck">uncheck</button>
-
-		<script>
-			$(function(){
-			});
-		</script>
-
 	</div>
-		
 
 
 </body>
