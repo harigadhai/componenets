@@ -60,6 +60,122 @@
 	<p>===========================================================</p>
 
 
+
+	<p>===========================================================</p>
+		<h3>simple select all function</h3>
+		<form action="" >
+			<div>
+				<div id="selectAllVal">
+					chekbox : <input type="checkbox" value="20" autocomplete="off" name="vegies"> <span> Onion</span>
+					<input type="checkbox" value="15" autocomplete="off" class='vegies' name="vegies"> <span> Capsicam</span>
+					<input type="checkbox" value="40" autocomplete="off" class='vegies' name="vegies"> <span> Mushroom</span>
+					<input type="checkbox" value="25" autocomplete="off" class='vegies' name="vegies"> <span> Chilly</span>
+					<input type="checkbox" value="35" autocomplete="off" class='vegies' name="vegies"> <span> Babycorn</span>
+				</div>
+				<p> <input type="checkbox" value="35" autocomplete="off" id="masterCheck" onclick=selectAll(this)> <span> Select All</span></p>
+			</div>
+
+			<script>
+			window.onload = function(){
+				var elem = document.getElementById('selectAllVal');
+				var myvegies = elem.getElementsByTagName('input');
+
+				for(var i=0; i<myvegies.length;i++){
+						if(myvegies[i].type == 'checkbox'){
+							myvegies[i].onchange = checkSelections;
+						}
+					}
+			}
+
+			function checkSelections(){
+				//console.log(this.form.querySelectorAll(':checked').length) //======important========
+				var count = 0;
+				var elem = document.getElementById('selectAllVal');
+				var myvegies = elem.getElementsByTagName('input');
+
+				for(var i=0; i<myvegies.length;i++){
+						if(myvegies[i].type == 'checkbox'){
+							if(myvegies[i].checked == true){
+								count++;
+							}else{
+								count--;
+							}
+						}
+					}
+
+
+
+				if(myvegies.length == count){
+					document.getElementById('masterCheck').checked = true;
+				}else{
+					document.getElementById('masterCheck').checked = false;
+				}
+			};
+				
+				function selectAll(all){
+					var checkedArray = [];
+					var checked = all.checked;
+					var elem = document.getElementById('selectAllVal');
+					var myvegies = elem.getElementsByTagName('input');
+					for(var i=0; i<myvegies.length;i++){
+						if(myvegies[i].type == 'checkbox'){
+							myvegies[i].checked = checked;
+							if(myvegies[i].checked == true){
+								checkedArray.push(myvegies[i].value)
+							}
+						}
+							
+					}
+					console.log(checkedArray)
+				}
+				
+			</script>
+
+		</form>
+	<p>===========================================================</p>
+
+
+	<p>===========================================================</p>
+		<h3>GET all selected values function</h3>
+		<form action="" >
+			<div id="getMultiVal">
+				chekbox : <input type="checkbox" value="20" autocomplete="off" name="vegies"> <span> Onion</span>
+				<input type="checkbox" value="15" autocomplete="off" name="vegies"> <span> Capsicam</span>
+				<input type="checkbox" value="40" autocomplete="off" name="vegies"> <span> Mushroom</span>
+				<input type="checkbox" value="25" autocomplete="off" name="vegies"> <span> Chilly</span>
+				<input type="checkbox" value="35" autocomplete="off" name="vegies"> <span> Babycorn</span>
+
+				<p><button type="button" onclick=getSelectedVal()>Get Values</button></p>
+			</div>
+			</form>
+			<script>
+				function getSelectedVal(){
+
+					var elem = document.getElementById('getMultiVal');
+					var myvegies = elem.getElementsByTagName('input');
+					var checkedArray = [];
+					for(var i=0; i<myvegies.length;i++){
+						if(myvegies[i].type == 'checkbox'){
+							if(myvegies[i].checked == true){
+								checkedArray.push(myvegies[i].value)
+							}
+						}
+					}
+					console.log(checkedArray)
+				}
+				
+			</script>
+
+	<p>===========================================================</p>
+
+
+
+
+
+
+
+
+
 	<p>===========================================================</p>
 		<div>
 			<p>adding javascript onclick checkbox</p>
