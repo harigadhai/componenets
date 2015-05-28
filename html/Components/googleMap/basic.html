@@ -2,13 +2,49 @@
 <html>
 <head>
 <title>Template</title>
-<script src="js/jquery-1.11.3.min"></script>
+<link href="../../public/css/bootstrap.min.css" rel="stylesheet">
 <style>
 
 </style>
 </head>
     
 <body>
+	<div>
+		<p>
+			<form action="">
+				<input type="text" id="myRegion"><button type="button" id="getData">submit</button>
+			</form>
+
+
+			<p id="myData"></p>
+			
+		</p>
+
+
+
+		<script src="../../public/js/jquery-1.11.3.min.js"></script>	
+		<script>
+		$(function(){
+
+			$('#getData').click(function(){
+				var param = $('#myRegion').val();
+				$.ajax({
+					url:'https://regions.housing.com/api/v1/polygon/suggest?input='+param,
+					type:"GET",
+					//data:,
+					dataType:'json',
+					error : function(){
+
+					},
+					success:function(data){
+						$('#myData').text(JSON.stringify(data));
+					}
+				});
+			});
+		});
+		</script>
+	</div>
+
 
 
 </body>
