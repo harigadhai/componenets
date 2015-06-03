@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title>Template</title>
+<link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+    
+<body>
+
+	<div id="baseFolderWrap" class="container">			
+		
+	</div>
+<script src="../../public/js/jquery-1.11.3.min.js"></script>	
+<script>
+	$(function(){
+		resizeFitDiv();
+	});
+	
+	window.onresize = function(event) {
+		resizeFitDiv();
+	};
+	
+	function resizeFitDiv(){
+		var width = $(window).width();		
+		var widthWithMargin = width*92/100;
+		var marginleft = width*4/100;
+		
+		
+		var height = $(window).height();
+		var heightWithMargin = height*92/100;
+		var marginHeight = height*4/100;
+		
+		$('#baseFolderWrap').css({'width':widthWithMargin,'margin-left':marginleft,'height':heightWithMargin,'margin-top':marginHeight})
+	}
+	
+	
+	
+</script>
+</body>
+</html>
