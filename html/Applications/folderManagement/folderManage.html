@@ -15,25 +15,45 @@
 <body>
 
 	<div id="folderMainWrap">
-		<h1>My Drive</h1>
+		<div class="popLabel">
+			<div style="float:left;">
+				<h1>My Drive</h1>
+			</div>
+				
+
+			<div style="float:right;">
+				<a href="javascript:;" id="createNewFolder" name="createFolderPopup" class="fm-pt">New Folder</a>
+			</div>	
+		</div>
+
+		<div id="mainFolderContainer">
+					
+		</div>
+		
+			
+
 	</div>
 
 	<div class="lightBoxy"></div>
 
-	<div id="createFolderPopup">
-		<div>
+	<div id="createFolderPopup" class="fm-inputsWrap fm-popup">
+		<div class="fm-fn-header">
 			<h1>Name Folder</h1>
 		</div>
-		<div>
-			<input type="text" id="newFolder">
+		<div class="fm-fn-input">
+			<input type="text" id="newFolder" class="fm-input" value="New Folder" placeholder="New Folder">
 		</div>
 		<div class="fm-fn-btns">
-			<button>Cancel</button>
-			<button>Create</button>
+			<button class="fm-fn-cancel fm-cancel" name="createFolderPopup">Cancel</button>
+			<button class="fm-fn-create fm-submit">Create</button>
 		</div>
 	</div>
 
 <script src="../../public/js/jquery-1.11.3.min.js"></script>
+<script>
+	var tWidth = $(window).width();
+	var tHeight = $(window).height();
+</script>
 <script src="js/script.js"></script>
 
 
@@ -49,11 +69,11 @@
 		}
 
 		function screenSizeBaseDiv(){
-			var tWidth = $(window).width()*96/100;
+			var tWidth = tWidth*96/100;
 			var tWMargin  = tWidth*2/100;
 
 
-			var tHeight  = $(window).height()*92/100;
+			var tHeight  = tHeight*92/100;
 			var tHMargin  = tHeight*4/100;
 
 			$("#folderMainWrap").css({'width':tWidth,'margin-left':tWMargin,'height':tHeight,'margin-top':tHMargin});
