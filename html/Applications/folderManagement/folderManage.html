@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<title>Template</title>
+<link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href="css/main.css" rel="stylesheet">
+
+<style>
+
+
+</style>
+</head>
+    
+<body>
+
+	<div id="folderMainWrap">
+		<h1>My Drive</h1>
+	</div>
+
+	<div class="lightBoxy"></div>
+
+	<div id="createFolderPopup">
+		<div>
+			<h1>Name Folder</h1>
+		</div>
+		<div>
+			<input type="text" id="newFolder">
+		</div>
+		<div class="fm-fn-btns">
+			<button>Cancel</button>
+			<button>Create</button>
+		</div>
+	</div>
+
+<script src="../../public/js/jquery-1.11.3.min.js"></script>
+<script src="js/script.js"></script>
+
+
+ <!-- if (/msie|MSIE 9/.test(navigator.userAgent)) {} -->
+<!--[if lt IE 9]>
+		$(function(){
+			screenSizeBaseDiv();
+		});
+		screenSizeBaseDiv();
+
+		window.onresize = function() {
+			screenSizeBaseDiv();
+		}
+
+		function screenSizeBaseDiv(){
+			var tWidth = $(window).width()*96/100;
+			var tWMargin  = tWidth*2/100;
+
+
+			var tHeight  = $(window).height()*92/100;
+			var tHMargin  = tHeight*4/100;
+
+			$("#folderMainWrap").css({'width':tWidth,'margin-left':tWMargin,'height':tHeight,'margin-top':tHMargin});
+		}
+<![endif]-->
+</body>
+</html>
