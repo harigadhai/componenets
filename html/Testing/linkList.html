@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<title>Template</title>
+<link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+    
+<body>
+
+<script src="../../public/js/jquery-1.11.3.min.js"></script>	
+<script>
+	
+
+	function LinkedList(){
+		this.head = null;
+	}
+	LinkedList.prototype.add = function(value){
+		var node = {
+			value : value,
+			next : null
+		};
+		var current;
+		if(this.head == null){
+			this.head = node;
+		}else{
+			current = this.head;
+
+			console.log(current.next);
+			while(current.next){				
+				current = current.next;
+				console.log(current.next);
+			}
+
+			console.log("===================================");
+			current.next  = node;
+			console.log(current);
+
+		}
+		
+		return node;
+	}
+
+	/*LinkedList.prototype.remove = function(value){
+		var current,value = node.value;
+
+		if(this.head == null){
+
+			if(this.head == node){
+				this.head = this.head.next;
+				node.next = null;
+				return value;
+			}
+			current = this.head;
+			while(current.next){
+				if(current.next  === node){
+					current.next = node.next;
+					return value;
+				}
+
+				current = current.next;
+			}
+		}
+	}*/
+
+	var list1 = new LinkedList();
+	list1.add("Test Folders1");
+	list1.add("Test Folders2");
+	list1.add("Test Folders3");
+	/*list1.add("Test Folders4");
+	list1.add("Test Folders5");*/
+
+</script>
+
+</body>
+</html>

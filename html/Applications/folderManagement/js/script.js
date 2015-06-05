@@ -1,7 +1,7 @@
 
 var myDrive = {
 
-			folderArray = [],
+			//folderArray = [],
 
 			UIBinding : function(){
 
@@ -14,17 +14,13 @@ var myDrive = {
 				});
 
 
-				$("#createNewFolder").click(function(){
-					var popDiv = $('#'+$(this).attr('name'));			
-					popDiv.css('marginTop',tHeight/2 - popDiv.height()/2)
-					showPopup(popDiv)
-				});
+				
 
 				
 
-				$(".fm-fn-create").click(function(){
-					
-				});
+				/*$(".fm-fn-create").click(function(){
+					$(".fm-input").val();
+				});*/
 
 				$(".fm-fn-cancel").click(function(){
 					hidePopup($('#'+$(this).attr('name')))
@@ -43,9 +39,55 @@ var myDrive = {
 
 
 $(function(){
+	myDrive.init();
+	var list1 = new LinkedList();		
+	//list1.headerInit();
+
+	$("#createNewFolder").click(function(){
+		var popDiv = $('#'+$(this).attr('name'));			
+		popDiv.css('marginTop',tHeight/2 - popDiv.height()/2)
+		showPopup(popDiv);
+		
+	});
+
+	$(".fm-fn-create").click(function(){
+		list1.add($("#newFolder").val());
+	});
+
 	
-		myDrive.init();
+
 });
+
+	var array = [];
+	function LinkedList(){
+		this.head = null;
+	}
+
+
+	LinkedList.prototype.add = function(value){
+
+		console.log(value)
+		var node = {
+			value : value,
+			next : null
+		};
+		var current;
+		if(this.head == null){
+			this.head = {};
+			array[this.head] = [];
+			array[this.head].push(node)
+		}else{
+			array[this.head].push(node)
+		}
+
+
+	}
+
+	LinkedList.prototype.getRef = function(ref){
+		this.head = ref;
+	}
+
+
 
 function showPopup(popup){
 		popup.show();
