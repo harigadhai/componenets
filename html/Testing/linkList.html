@@ -4,45 +4,98 @@
 <title>Template</title>
 <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
 <style>
-
+	.folders{
+		width: 300px;
+		height: 300px;
+		border:1px solid #ccc;
+	}
 </style>
 </head>
     
 <body>
-
-<script src="../../public/js/jquery-1.11.3.min.js"></script>	
+	<div>
+	<ul id="baseFolder"></ul>
+		
+	</div>
+<script src="../public/js/jquery-1.11.3.min.js"></script>	
 <script>
+	var list1 = new LinkedList();
 	
+
+		
 
 	function LinkedList(){
 		this.head = null;
+		this.prevNode = null;
 	}
 	LinkedList.prototype.add = function(value){
 		var node = {
+			prev : null,
 			value : value,
 			next : null
 		};
+
 		var current;
 		if(this.head == null){
 			this.head = node;
 		}else{
 			current = this.head;
-
-			console.log(current.next);
-			while(current.next){				
+			while(current.next){							
 				current = current.next;
-				console.log(current.next);
 			}
 
-			console.log("===================================");
-			current.next  = node;
-			console.log(current);
+			
 
-		}
-		
+				if(current != this.head){							
+					current.prev = this.prevNode;
+					this.prevNode = current;						
+				}else{
+					current.prev = null;
+					this.prevNode = this.head;
+				}
+				node.prev = current;
+				current.next  = node;
+
+		}		
 		return node;
 	}
+	LinkedList.prototype.innerFolders = function(objref,parentClass){
+		var node = document.createElement('li');
+		node.innerHTML = objref.value;
+		node.className = objref.value+' folders';
+		$('.'+parentClass).remove();
+		document.getElementById('baseFolder').appendChild(node);
+		
 
+		node.onclick = function(obj){
+			return function(){
+          		list1.innerFolders(obj.next,obj.value);
+           }			
+		}(objref);
+	}
+	LinkedList.prototype.displayRoot = function(){
+
+		var node = document.createElement('li');
+		node.innerHTML = this.head.value;
+		node.className = this.head.value+' folders';
+		document.getElementById('baseFolder').appendChild(node);
+		node.onclick = function(obj){
+			return function(){
+          		list1.innerFolders(obj.next,obj.value);
+          	}			
+		}(this.head);
+
+		// $('#baseFolder').append('<ul><li class="'+this.head.value+'">'+this.head.value+'</li></ul>');
+		// alert(this.head.value)
+		// $('#baseFolder').find('.'+this.head.value).attr('title',this.head);
+
+
+		/*for(var key in this.head){
+			var node = document.createElement('li');
+
+			var folder = document.getElementById('baseFolder').appendChild(node);
+		}*/
+	}
 	/*LinkedList.prototype.remove = function(value){
 		var current,value = node.value;
 
@@ -65,12 +118,12 @@
 		}
 	}*/
 
-	var list1 = new LinkedList();
-	list1.add("Test Folders1");
-	list1.add("Test Folders2");
-	list1.add("Test Folders3");
-	/*list1.add("Test Folders4");
-	list1.add("Test Folders5");*/
+	list1.add("Folders1");
+	list1.add("Folders2");
+	list1.add("Folders3");
+	list1.add("Folders4");
+	list1.displayRoot();
+	/*list1.add("Test Folders5");*/
 
 </script>
 
