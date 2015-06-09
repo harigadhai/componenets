@@ -4,34 +4,85 @@
 <title>Template</title>
 <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
 <style>
-	.folders{
+	#baseFolder{
 		width: 300px;
 		height: 300px;
 		border:1px solid #ccc;
+	}
+	.folders{
+		padding:5px;
+		border: 1px solid #ccc;
+		box-shadow: 0px 0px 1px 1px #ccc;
+		display: inline-block;
+		margin: 10px;
 	}
 </style>
 </head>
     
 <body>
-	<div>
-	<ul id="baseFolder"></ul>
+	<div id="baseFolder">
 		
 	</div>
 <script src="../public/js/jquery-1.11.3.min.js"></script>	
 <script>
-	var list1 = new LinkedList();
-	
+
+	var basedir = [
+			{
+				prev : null,
+				value : {"Folder1" :[]},
+				next : null
+			},
+			{
+				prev : null,
+				value : {"Folder2" :[]},
+				next : null
+			},
+			{
+				prev : null,
+				value : {"Folder3" :[]},
+				next : null
+			},
+	];
 
 		
 
 	function LinkedList(){
 		this.head = null;
 		this.prevNode = null;
+		this.next = null;
 	}
+
+	LinkedList.prototype.loadBaseDir = function(dir){
+		/*var wrapDiv = document.createElement('div');
+		wrapDiv.id = dir.value;
+		document.getElementById('baseFolder').appendChild(wrapDiv);*/
+		for(var key in dir){
+			var node = document.createElement('p');
+			console.log(dir[key])
+			for(var name in dir[key].value){
+				node.innerHTML = name;
+				//console.log(dir[key])
+				node.onclick = function(obj){
+					return function(){
+						if(obj.next != null){
+							list1.innerFolders(obj.next,obj.value);
+						}else{
+							console.log("empty folder")
+						}
+		           }			
+				}(dir[key].value);
+			}
+			node.className = 'folders';
+			
+			document.getElementById('baseFolder').appendChild(node);
+		}
+	}
+
+
 	LinkedList.prototype.add = function(value){
 		var node = {
 			prev : null,
-			value : value,
+			value : {value :[]},
 			next : null
 		};
 
@@ -60,30 +111,54 @@
 		return node;
 	}
 	LinkedList.prototype.innerFolders = function(objref,parentClass){
-		var node = document.createElement('li');
+		$('#'+parentClass).remove();
+		//folder page creation html
+		var wrapDiv = document.createElement('div');
+		wrapDiv.id = objref.value;
+		document.getElementById('baseFolder').appendChild(wrapDiv);
+
+		var node = document.createElement('p');
 		node.innerHTML = objref.value;
 		node.className = objref.value+' folders';
-		$('.'+parentClass).remove();
-		document.getElementById('baseFolder').appendChild(node);
+		
+		document.getElementById(objref.value).appendChild(node);
 		
 
 		node.onclick = function(obj){
 			return function(){
-          		list1.innerFolders(obj.next,obj.value);
+				if(obj.next != null){
+					list1.innerFolders(obj.next,obj.value);
+				}else{
+					console.log("empty folder")
+				}
            }			
 		}(objref);
 	}
 	LinkedList.prototype.displayRoot = function(){
 
-		var node = document.createElement('li');
-		node.innerHTML = this.head.value;
-		node.className = this.head.value+' folders';
-		document.getElementById('baseFolder').appendChild(node);
-		node.onclick = function(obj){
-			return function(){
-          		list1.innerFolders(obj.next,obj.value);
-          	}			
-		}(this.head);
+		//folder page creation html
+		var wrapDiv = document.createElement('div');
+		wrapDiv.id = this.head.value;
+		document.getElementById('baseFolder').appendChild(wrapDiv);
+		
+		//folder creation html
+
+			var node = document.createElement('p');
+			node.innerHTML = this.head.value;
+			node.className = this.head.value+' folders';
+			document.getElementById(this.head.value).appendChild(node);
+
+			node.onclick = function(obj){
+				return function(){
+					if(obj != null){
+	          			list1.innerFolders(obj.next,obj.value);
+	          		}else{
+	          			console.log("empty folder")
+	          		}
+	          	}			
+			}(this.head);
+
+
 
 		// $('#baseFolder').append('<ul><li class="'+this.head.value+'">'+this.head.value+'</li></ul>');
 		// alert(this.head.value)
@@ -118,12 +193,19 @@
 		}
 	}*/
 
-	list1.add("Folders1");
-	list1.add("Folders2");
-	list1.add("Folders3");
-	list1.add("Folders4");
-	list1.displayRoot();
+	//list1.add("Folders1");
+	//list1.add("Folders2");
+	//list1.add("Folders3");
+	//list1.add("Folders4");
+	//list1.displayRoot();
 	/*list1.add("Test Folders5");*/
+
+
+	
+	var list1 = new LinkedList();
+	
+
+	list1.loadBaseDir(basedir);
 
 </script>
 
