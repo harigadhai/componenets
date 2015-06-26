@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<title>Template</title>
+<link href="css/main.css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+    
+<body>
+	<canvas id="canvas1" WIDTH="600" HEIGHT="400"></canvas>
+	<img id="london_eye" src="images/london.jpg">
+	<script>
+			//function canvasCreate(){
+				var canvas = document.getElementById('canvas1');
+				var canvas_context = canvas.getContext("2d");
+
+				var img = document.getElementById("london_eye");
+				img.onload = function(){
+					canvas_context.drawImage(img, 0, 0, 200, 300, 20, 20, 200, 300);
+					canvas_context.drawImage(img, 200, 0, 200, 300, 240, 20, 200, 300);
+					canvas_context.drawImage(img, 400, 0, 100, 300, 460, 20, 100, 300);
+			
+					/*canvas_context.fillStyle = pattern;
+					canvas_context.fillRect(0,0,1000,1000);*/
+				}
+			//}
+				
+
+			/*window.onload = function(){
+				canvasCreate();
+			}*/
+
+	</script>
+</body>
+</html>

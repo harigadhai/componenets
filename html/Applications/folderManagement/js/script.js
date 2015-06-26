@@ -35,10 +35,20 @@ var myDrive = {
 
 	}
 
-
-
-
 $(function(){
+	myDrive.init();
+	$("#createNewFolder").click(function(){
+		var popDiv = $('#'+$(this).attr('name'));			
+		popDiv.css('marginTop',tHeight/2 - popDiv.height()/2)
+		showPopup(popDiv);
+		
+	});
+
+	
+});
+
+
+/*$(function(){
 	myDrive.init();
 	var list1 = new LinkedList();		
 	//list1.headerInit();
@@ -87,7 +97,7 @@ $(function(){
 		this.head = ref;
 	}
 
-
+*/
 
 function showPopup(popup){
 		popup.show();

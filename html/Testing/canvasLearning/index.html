@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<title>Template</title>
+<link href="css/main.css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+    
+<body>
+	<a href="#"> <img src="images/180.jpg" id="img1" alt=""></a>
+
+
+	<style>
+			.img-cover {
+			    position:absolute;
+			    opacity:1.0;
+			    -webkit-transitionall : .5s ease-in-out;
+			    transitionall : .5s ease-in-out
+
+			}
+			 
+			.img-cover:hover {
+			    opacity:0;
+
+			}
+	</style>
+<script src="js/jquery-1.11.3.min.js"></script>
+
+<script>
+
+	$(function(){
+		var filters = new Array();
+		filters.push(new flterColors(0xFF, 0xFF, 0xFF)); //grayscale
+		filters.push(new flterColors(0xEC, 0x8A, 0x00)); //Warming (85)
+		filters.push(new flterColors(0xFA, 0x96, 0x00));// Warming (LBA)
+		filters.push(new flterColors(0xEB, 0xB1, 0x13)); //Warming (81)
+		filters.push(new flterColors(0x00, 0x6D, 0xFF));// Coolling (80)
+		filters.push(new flterColors(0x00, 0x5D, 0xFF)); //Cooling (LBB)
+		filters.push(new flterColors(0x00, 0xB5, 0xFF)); //Cooling (82)
+		filters.push(new flterColors(0xEA, 0x1A, 0x1A)); //Red
+		filters.push(new flterColors(0xF3, 0x84, 0x17));// Orange
+		filters.push(new flterColors(0xF9, 0xE3, 0x1C)); //Yellow
+		filters.push(new flterColors(0x19, 0xC9, 0x19)); //Green
+		filters.push(new flterColors(0x1D, 0xCB, 0xEA));// Cyan
+		filters.push(new flterColors(0x1D, 0x35, 0xEA));// Blue
+		filters.push(new flterColors(0x9B, 0x1D, 0xEA));// Violet
+		filters.push(new flterColors(0xE3, 0x18, 0xE3)); //Magenta
+		filters.push(new flterColors(0xAC, 0x7A, 0x33));// Sepia
+		filters.push(new flterColors(0xFF, 0x00, 0x00));// Deep Red
+		filters.push(new flterColors(0x00, 0x22, 0xCD));// Deep Blue
+		filters.push(new flterColors(0x00, 0x8C, 0x00));// Deep Emerald
+		filters.push(new flterColors(0xFF, 0xD5, 0x00)); //Deep Yellow
+		filters.push(new flterColors(0x00, 0xC1, 0xB1)); //Underwater
+
+
+		$('#img1').load(function() {
+
+
+		   // create canvas with the filtered image
+		    var filteredCanvas = filterImage($(this).get(0), filters[15], 50);
+		     
+		    //set canvas element's parameters and insert it into HTML
+		    $(filteredCanvas).attr('class', 'img-cover');
+		    $(filteredCanvas).css('left', $('#img1').position().left);
+		    $(filteredCanvas).css('top', $('#img1').position().top);
+		    $(filteredCanvas).insertAfter($(this));
+
+		});
+
+	});
+	
+	function filterImage(img, filter, density) {
+
+     
+   // compute color intensity for the entire filter and density
+    var rIntensity = (filter.r * density + 255 * (100 - density)) / 25500;
+    var gIntensity = (filter.g * density + 255 * (100 - density)) / 25500;
+    var bIntensity = (filter.b * density + 255 * (100 - density)) / 25500;
+     
+    //create canvas and load image
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+     
+  //  get image data and process the pixels
+    var imageData = ctx.getImageData(0, 0, img.width, img.height);
+    var data = imageData.data;
+    for (var i = 0; i < data.length; i += 4) {
+        var luma = 0.299 * data[i] + 0.587 * data[i+1] + 0.114 * data[i+2];
+        data[i] = Math.round(rIntensity * luma);
+        data[i+1] = Math.round(gIntensity * luma);
+        data[i+2] = Math.round(bIntensity * luma);
+    }
+     
+  //  put the image data back into canvas
+    ctx.putImageData(imageData, 0, 0);
+     
+    return canvas;
+
+}
+
+function flterColors(r, g, b) {
+
+    this.r = r;
+    this.g = g;
+    this.b = b;
+
+}
+ 
+
+</script>	
+</body>
+</html>

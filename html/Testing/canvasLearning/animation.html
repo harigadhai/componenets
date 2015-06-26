@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<title>Template</title>
+<link href="css/main.css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+    
+<body>
+	<section style="border:1px solid #ccc;width:600px;">
+		<canvas id="canvas1" WIDTH="600" HEIGHT="400"></canvas>		
+	</section>
+	<p><button onclick="drawOnCanvas()">start</button></p>
+	<p><button onclick="stopTimer()">Stop</button></p>
+		
+	<script>
+
+
+
+				var canvas = document.getElementById('canvas1');
+				canvas_context = canvas.getContext("2d");
+
+				canvas_context.shadowColor = "red";
+				canvas_context.shadowOffsetX = 1;
+			canvas_context.shadowOffsetY = 1;
+			canvas_context.shadowBlur = 2;
+			canvas_context.fillText("Home and Learn", 20, 50);
+
+			
+
+			
+				
+	</script>
+
+</body>
+</html>
